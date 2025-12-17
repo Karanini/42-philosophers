@@ -6,7 +6,7 @@
 /*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/17 11:37:19 by michel_32        ###   ########.fr       */
+/*   Updated: 2025/12/17 11:40:14 by michel_32        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_init_threads(t_data *data)
 			return (-1);
 		i++;
 	}
+	//initialize the start_time here
 	pthread_mutex_unlock(&data->starting_mtx);
 	return (0);
 }
