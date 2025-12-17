@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/16 18:28:46 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:21:10 by michel_32        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,6 @@ t_philo	*ft_init_philosophers(t_data *data)
 		i++;
 	}
 	return (philo_tab);
-}
-
-int	ft_mutex_init(pthread_mutex_t mutex)
-{
-	int	ret;
-
-	ret = pthread_mutex_init(&mutex, NULL);
-	if (ret != 0)
-		return (-1);
-	return (0);
 }
 
 pthread_mutex_t	*ft_init_fork_mutexes(t_args *input_args, t_philo *philo_tab)

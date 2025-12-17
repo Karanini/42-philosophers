@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   wisdom_lovers_life.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/16 16:40:37 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/17 11:20:23 by michel_32        ###   ########.fr       */
+/*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
+/*   Updated: 2025/12/17 11:33:20 by michel_32        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char *av[])
+void    *ft_wise_life(t_data *data)
 {
-	t_data	*data;
 
-	if (ac < 4 || ac > 5)
-	{
-		printf("incorrect number of arguments\n");
-		return (1);
-	}
-	data = ft_init_data(ac, av);
-	ft_init_threads(data);
-	if (!data)
-		return (1);
-	return (0);
 }
