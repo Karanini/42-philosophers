@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 12:04:35 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:15:42 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->philo_tab = NULL;
 	data->fork_mtx = NULL;
 	data->input_args = ft_init_args_struct(ac, av);
-	data->philo_id = -1;
 	if (!data->input_args)
 		return (ft_cleanup(data), NULL);
 	data->philo_tab = ft_init_philosophers(data);
@@ -70,8 +69,10 @@ t_philo	*ft_init_philosophers(t_data *data)
 	while (i < num_philo)
 	{
 		philo_tab[i].tid = -1;
+		philo_tab[i].philo_id = i;
 		philo_tab[i].start_time = 0;
-		if (ft_mutex_init(philo_tab[i].print_mtx) == -1)
+		philo_tab[i].data = data;
+		if (ft_mutex_init(&philo_tab[i].print_mtx) == -1)
 			return (NULL);
 		i++;
 	}
@@ -90,7 +91,7 @@ pthread_mutex_t	*ft_init_fork_mutexes(t_args *input_args)
 	i = 0;
 	while (i < input_args->number_of_philosophers)
 	{
-		if (ft_mutex_init(fork_mtx[i]) == -1)
+		if (ft_mutex_init(&fork_mtx[i]) == -1)
 			return (NULL);
 		i++;
 	}
@@ -102,13 +103,13 @@ void	ft_assign_forks_to_philos(t_philo *philo_tab, pthread_mutex_t *fork_mtx,
 {
 	int	i;
 
-	philo_tab[0].left_fork = fork_mtx[num_philos - 1];
-	philo_tab[0].right_fork = fork_mtx[0];
+	philo_tab[0].left_fork = &fork_mtx[num_philos - 1];
+	philo_tab[0].right_fork = &fork_mtx[0];
 	i = 1;
 	while (i < num_philos)
 	{
-		philo_tab[i].left_fork = fork_mtx[i - 1];
-		philo_tab[i].right_fork = fork_mtx[i];
+		philo_tab[i].left_fork = &fork_mtx[i - 1];
+		philo_tab[i].right_fork = &fork_mtx[i];
 		i++;
 	}
 }
