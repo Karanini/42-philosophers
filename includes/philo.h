@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/17 11:34:17 by michel_32        ###   ########.fr       */
+/*   Updated: 2025/12/18 11:14:04 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	t_philo			*philo_tab;
 	pthread_mutex_t	*fork_mtx;
 	pthread_mutex_t	starting_mtx;
+	int				philo_id;
 }					t_data;
 
 /**********INIT ****************/

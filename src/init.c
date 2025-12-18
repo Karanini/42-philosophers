@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/17 11:21:10 by michel_32        ###   ########.fr       */
+/*   Updated: 2025/12/18 11:14:44 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->philo_tab = NULL;
 	data->fork_mtx = NULL;
 	data->input_args = ft_init_args_struct(ac, av);
+	data->philo_id = -1;
 	if (!data->input_args)
 		return (ft_cleanup(data), NULL);
 	data->philo_tab = ft_init_philosophers(data);
