@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/17 10:54:00 by michel_32        ###   ########.fr       */
+/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "includes/philo.h"
 
 int	ft_atoi(const char *nptr)
 {
@@ -49,8 +49,8 @@ long ft_get_elapsed_time_microseconds(struct timeval start, struct timeval end)
 * more than asked (approx. 70 ms). To avoid this, this function usleeps in chunks
 * and computes the actual elapsed time. When rem <= 1000, the thread busy-waits: it
 * loops computing elapsed again and again until it's > usec
-* 
-* @param usec the time to wait in microseconds 
+*
+* @param usec the time to wait in microseconds
 */
 void ft_precise_usleep(long usec) {
     struct timeval start, current;
@@ -63,8 +63,8 @@ void ft_precise_usleep(long usec) {
         elapsed = ft_get_elapsed_time_microseconds(start, current);
         rem = usec - elapsed;
 
-        if (rem > 1000) 
+        if (rem > 1000)
             usleep(rem / 2);
-        
+
     } while (elapsed < usec);
 }

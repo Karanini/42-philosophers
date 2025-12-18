@@ -6,11 +6,11 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/18 11:22:52 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "includes/philo.h"
 
 int	ft_mutex_init(pthread_mutex_t mutex)
 {

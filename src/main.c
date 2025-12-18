@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michel_32 <michel_32@student.42.fr>        +#+  +:+       +#+        */
+/*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:37 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/17 11:20:23 by michel_32        ###   ########.fr       */
+/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "includes/philo.h"
 
 int	main(int ac, char *av[])
 {

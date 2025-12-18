@@ -6,11 +6,11 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:26:35 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/16 18:29:12 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "includes/philo.h"
 
 void	ft_cleanup(t_data *data)
 {
