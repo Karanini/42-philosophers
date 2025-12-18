@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 11:14:04 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:53:21 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,22 @@ typedef struct s_data
 }					t_data;
 
 /**********INIT ****************/
+t_data				*ft_init_data(int ac, char *av[]);
 t_args				*ft_init_args_struct(int ac, char *av[]);
 t_philo				*ft_init_philosophers(t_data *data);
-pthread_mutex_t		*ft_init_fork_mutexes(t_args *input_args,
-						t_philo *philo_tab);
+pthread_mutex_t		*ft_init_fork_mutexes(t_args *input_args);
 void				ft_assign_forks_to_philos(t_philo *philo_tab,
 						pthread_mutex_t *fork_mtx, int num_philos);
 int					ft_mutex_init(pthread_mutex_t mutex);
+int					ft_init_threads(t_data *data);
 
 /**********UTILS ****************/
 int					ft_atoi(const char *nptr);
 
 /**********RUN IT ****************/
-void				*ft_wise_life(t_data *data);
+void				*ft_wise_life(void *data);
+
+/**********DIRTY LAUNDRY ****************/
+void				ft_cleanup(t_data *data);
 
 #endif

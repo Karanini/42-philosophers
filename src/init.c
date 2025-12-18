@@ -6,15 +6,11 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:04:35 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-// ft_init_args_struct()
-// 	ft_init_mutexes();
-// 	ft_init_threads();
 
 t_data	*ft_init_data(int ac, char *av[])
 {
@@ -34,11 +30,12 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->philo_tab = ft_init_philosophers(data);
 	if (!data->philo_tab)
 		return (ft_cleanup(data), NULL);
-	data->fork_mtx = ft_init_fork_mutexes(data->input_args, data->philo_tab);
+	data->fork_mtx = ft_init_fork_mutexes(data->input_args);
 	if (!data->fork_mtx)
 		return (ft_cleanup(data), NULL);
 	ft_assign_forks_to_philos(data->philo_tab, data->fork_mtx,
 		data->input_args->number_of_philosophers);
+	return (data);
 }
 
 t_args	*ft_init_args_struct(int ac, char *av[])
@@ -81,7 +78,7 @@ t_philo	*ft_init_philosophers(t_data *data)
 	return (philo_tab);
 }
 
-pthread_mutex_t	*ft_init_fork_mutexes(t_args *input_args, t_philo *philo_tab)
+pthread_mutex_t	*ft_init_fork_mutexes(t_args *input_args)
 {
 	pthread_mutex_t	*fork_mtx;
 	int				i;

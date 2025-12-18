@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:51:45 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_init_threads(t_data *data)
 	while (i < data->input_args->number_of_philosophers)
 	{
 		data->philo_id = i;
-		if (pthread_create(&data->philo_tab[i].tid, NULL, ft_wise_life,
+		if (pthread_create(&data->philo_tab[i].tid, NULL, &ft_wise_life,
 				data) != 0)
 			return (-1);
 		i++;

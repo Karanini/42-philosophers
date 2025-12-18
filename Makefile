@@ -6,7 +6,7 @@
 #    By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/16 14:08:56 by bkaras-g          #+#    #+#              #
-#    Updated: 2025/12/18 11:43:30 by bkaras-g         ###   ########.fr        #
+#    Updated: 2025/12/18 12:05:22 by bkaras-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ NAME = philo
 SRC_DIR = src
 
 SRC_FILES = main.c \
-			init.c \
 			wisdom_lovers_life.c \
 			init.c \
 			init2.c \
@@ -42,12 +41,12 @@ $(NAME): $(OBJ) $(HEADER) Makefile
 	@$(CC) $(FLAGS) -I. -c $< -o $@
 
 clean:
-	@$(MAKE) clean -C $(LIBFT_DIR) 1>/dev/null
+# 	@$(MAKE) clean 1>/dev/null
 	@$(RM) $(OBJ)
 	@echo  "Clean done"
 
 fclean: clean
-	@$(MAKE) fclean -C $(LIBFT_DIR) 1>/dev/null
+# 	@$(MAKE) fclean 1>/dev/null
 	@$(RM) $(NAME)
 
 re: fclean all
