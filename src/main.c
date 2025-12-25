@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:37 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 16:23:03 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 17:07:53 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	main(int ac, char *av[])
 	data = ft_init_data(ac, av);
 	if (!data)
 		return (1);
-	ft_init_threads(data);
-	if (!data)
-		return (1);
+	if (ft_init_threads(data) == -1)
+		return (ft_cleanup(data), 1);
 	i = 0;
 	while (i < data->input_args->num_of_philos)
 	{
