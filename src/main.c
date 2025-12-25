@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:37 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 13:26:39 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:57:39 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int ac, char *av[])
 		return (1);
 	}
 	data = ft_init_data(ac, av);
+	if (!data)
+		return (1);
 	ft_init_threads(data);
 	if (!data)
 		return (1);
