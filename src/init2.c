@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/25 17:14:46 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 17:23:00 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ int	ft_mutex_init(pthread_mutex_t *mutex)
 	return (0);
 }
 
+/*
+* initializing the philosophers' threads. The `starting_mtx` mutex is
+* locked by the main thread, then by all the other created threads
+* in ft_wise_life() so that each thread waits until all the threads
+* have been created.
+*/
 int	ft_init_threads(t_data *data)
 {
 	int	i;
