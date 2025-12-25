@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 16:23:34 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:29:23 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,18 @@ pthread_mutex_t	*ft_init_fork_mutexes(int num_of_philos)
 	return (fork_mtx);
 }
 
+/**
+ * @brief Assigns fork mutexes to each philosopher.
+ *
+ * This function iterates through the array of philosophers and assigns pointers
+ * to the appropriate fork mutexes (left and right) for each philosopher.
+ * It handles the logic to ensure that adjacent philosophers share the correct
+ * forks.
+ *
+ * @param philo_tab Pointer to the array of philosopher structures.
+ * @param fork_mtx  Pointer to the array of mutexes representing the forks.
+ * @param philo_nbr The total number of philosophers.
+ */
 void	ft_assign_forks_to_philos(t_philo *philo_tab, pthread_mutex_t *fork_mtx,
 		int num_philos)
 {
