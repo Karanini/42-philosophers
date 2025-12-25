@@ -69,6 +69,8 @@ int					ft_init_threads(t_data *data);
 
 /**********UTILS ****************/
 int					ft_atoi(const char *nptr);
+long long			ft_get_time(void);
+void				ft_precise_usleep(long usec);
 
 /**********RUN IT ****************/
 void				*ft_wise_life(void *data);

@@ -68,3 +68,12 @@ void ft_precise_usleep(long usec) {
 
     } while (elapsed < usec);
 }
+
+long long	ft_get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		return (-1);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
