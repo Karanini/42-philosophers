@@ -40,7 +40,6 @@ typedef struct s_philo
 {
 	pthread_t		tid;
 	int				philo_id;
-	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	long long start_time; // (1) beginning of the simulation or (2) when the philosopher
@@ -55,6 +54,7 @@ typedef struct s_data
 	t_philo			*philo_tab;
 	pthread_mutex_t	*fork_mtx;
 	pthread_mutex_t	starting_mtx;
+	pthread_mutex_t	print_mtx;
 }					t_data;
 
 /**********INIT ****************/

@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 16:08:34 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:13:27 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->fork_mtx = NULL;
 	data->input_args = ft_init_args_struct(ac, av);
 	if (!data->input_args)
+		return (ft_cleanup(data), NULL);
+	if (ft_mutex_init(&data->print_mtx) == -1)
 		return (ft_cleanup(data), NULL);
 	data->philo_tab = ft_init_philosophers(data);
 	if (!data->philo_tab)
@@ -72,8 +74,6 @@ t_philo	*ft_init_philosophers(t_data *data)
 		philo_tab[i].philo_id = i + 1;
 		philo_tab[i].start_time = 0;
 		philo_tab[i].data = data;
-		if (ft_mutex_init(&philo_tab[i].print_mtx) == -1)
-			return (NULL);
 		i++;
 	}
 	return (philo_tab);
