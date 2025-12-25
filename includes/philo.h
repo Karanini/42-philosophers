@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 15:05:04 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:43:43 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_data t_data;
 
+// input args of the program
 typedef struct s_args
 {
 	int				number_of_philosophers;
