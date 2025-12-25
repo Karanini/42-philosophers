@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/25 17:42:27 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 17:52:51 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ void    *ft_wise_life(void *philo_struct)
 	//sleep
 	//think
 	return (NULL);
+}
+
+void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
+{
+	pthread_mutex_lock(&philo->data->print_mtx);
+	if (msg_type == FORK)
+		printf("%lld %d has taken a fork\n", ft_get_time(), philo->philo_id);
+	else if (msg_type == EAT)
+		printf("%lld %d is eating\n", ft_get_time(), philo->philo_id);
+	else if (msg_type == SLEEP)
+		printf("%lld %d is sleeping\n", ft_get_time(), philo->philo_id);
+	else if (msg_type == THINK)
+		printf("%lld %d is thinking\n", ft_get_time(), philo->philo_id);
+	else if (msg_type == DIE)
+		printf("%lld %d died\n", ft_get_time(), philo->philo_id);
+	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
 void	ft_eat(t_philo *philo)
