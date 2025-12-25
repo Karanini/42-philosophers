@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 15:15:42 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:08:34 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_philo	*ft_init_philosophers(t_data *data)
 	while (i < num_philo)
 	{
 		philo_tab[i].tid = -1;
-		philo_tab[i].philo_id = i;
+		philo_tab[i].philo_id = i + 1;
 		philo_tab[i].start_time = 0;
 		philo_tab[i].data = data;
 		if (ft_mutex_init(&philo_tab[i].print_mtx) == -1)
