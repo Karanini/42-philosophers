@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 15:43:43 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:48:04 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_args
 	int				number_of_meals;
 }					t_args;
 
+//data specific to each philosopher
 typedef struct s_philo
 {
 	pthread_t		tid;
@@ -42,11 +43,12 @@ typedef struct s_philo
 	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	long long start_time; // beginning of the simulation or when the philosopher
+	long long start_time; // (1) beginning of the simulation or (2) when the philosopher
 							// starts to eat
 	t_data			*data;
 }					t_philo;
 
+//structure containing (or linking to) all the data of the program
 typedef struct s_data
 {
 	t_args			*input_args;
