@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/18 15:15:54 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:23:03 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_init_threads(t_data *data)
 	if (ft_mutex_init(&data->starting_mtx) == -1)
 		return (-1);
 	pthread_mutex_lock(&data->starting_mtx);
-	while (i < data->input_args->number_of_philosophers)
+	while (i < data->input_args->num_of_philos)
 	{
 		if (pthread_create(&data->philo_tab[i].tid, NULL, &ft_wise_life,
 				&data->philo_tab[i]) != 0)

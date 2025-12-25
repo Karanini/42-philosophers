@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 15:48:04 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:23:03 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data t_data;
 // input args of the program
 typedef struct s_args
 {
-	int				number_of_philosophers;
+	int				num_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -61,7 +61,7 @@ typedef struct s_data
 t_data				*ft_init_data(int ac, char *av[]);
 t_args				*ft_init_args_struct(int ac, char *av[]);
 t_philo				*ft_init_philosophers(t_data *data);
-pthread_mutex_t		*ft_init_fork_mutexes(t_args *input_args);
+pthread_mutex_t		*ft_init_fork_mutexes(int num_of_philos);
 void				ft_assign_forks_to_philos(t_philo *philo_tab,
 						pthread_mutex_t *fork_mtx, int num_philos);
 int					ft_mutex_init(pthread_mutex_t *mutex);

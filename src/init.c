@@ -6,12 +6,21 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 16:13:27 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:23:34 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+/**
+ * @brief Initializes the main data structure for the simulation and the mutexes
+ * required for synchronization.
+ *
+ * @param ac The argument count from the command line.
+ * @param av The argument vector containing the simulation parameters as strings.
+ * @return A pointer to the allocated and initialized `t_data` structure, or NULL
+ *         if memory allocation fails or a mutex initialization fails.
+ */
 t_data	*ft_init_data(int ac, char *av[])
 {
 	t_data	*data;
@@ -31,14 +40,20 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->philo_tab = ft_init_philosophers(data);
 	if (!data->philo_tab)
 		return (ft_cleanup(data), NULL);
-	data->fork_mtx = ft_init_fork_mutexes(data->input_args);
+	data->fork_mtx = ft_init_fork_mutexes(data->input_args->num_of_philos);
 	if (!data->fork_mtx)
 		return (ft_cleanup(data), NULL);
 	ft_assign_forks_to_philos(data->philo_tab, data->fork_mtx,
-		data->input_args->number_of_philosophers);
+		data->input_args->num_of_philos);
 	return (data);
 }
 
+/*
+* This function parses the command-line arguments and populates the `t_args`
+ * structure with the simulation parameters (number of philosophers,
+ * time to die, time to eat, time to sleep, and optionally the number
+ * of times each philosopher must eat).
+*/
 t_args	*ft_init_args_struct(int ac, char *av[])
 {
 	t_args	*args;
@@ -46,7 +61,7 @@ t_args	*ft_init_args_struct(int ac, char *av[])
 	args = malloc(sizeof(t_args));
 	if (!args)
 		return (NULL);
-	args->number_of_philosophers = ft_atoi(av[1]);
+	args->num_of_philos = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
 	args->time_to_eat = ft_atoi(av[3]);
 	args->time_to_sleep = ft_atoi(av[4]);
@@ -57,13 +72,16 @@ t_args	*ft_init_args_struct(int ac, char *av[])
 	return (args);
 }
 
+/*
+* initializes the data structures specific to each philosopher
+*/
 t_philo	*ft_init_philosophers(t_data *data)
 {
 	t_philo	*philo_tab;
 	int		num_philo;
 	int		i;
 
-	num_philo = data->input_args->number_of_philosophers;
+	num_philo = data->input_args->num_of_philos;
 	philo_tab = malloc(sizeof(t_philo) * num_philo);
 	if (!philo_tab)
 		return (NULL);
@@ -79,17 +97,17 @@ t_philo	*ft_init_philosophers(t_data *data)
 	return (philo_tab);
 }
 
-pthread_mutex_t	*ft_init_fork_mutexes(t_args *input_args)
+pthread_mutex_t	*ft_init_fork_mutexes(int num_of_philos)
 {
 	pthread_mutex_t	*fork_mtx;
 	int				i;
 
 	fork_mtx = malloc(sizeof(pthread_mutex_t)
-			* input_args->number_of_philosophers);
+			* num_of_philos);
 	if (!fork_mtx)
 		return (NULL);
 	i = 0;
-	while (i < input_args->number_of_philosophers)
+	while (i < num_of_philos)
 	{
 		if (ft_mutex_init(&fork_mtx[i]) == -1)
 			return (NULL);
