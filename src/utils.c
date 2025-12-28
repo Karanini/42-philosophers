@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 15:58:24 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 16:21:48 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,21 @@ long long	ft_get_time(void)
 
 // waits 10 ms then checks if death_flag is set to 1,
 // until time_to_wait is reached
-void	ft_wait_and_check(t_data *data, int time_to_wait)
+int	ft_wait_and_check(t_data *data, int time_to_wait)
 {
+	long			elapsed;
+	struct timeval	start;
+	struct timeval	current;
+
+	gettimeofday(&start, NULL);
+	elapsed = 0;
+	while (elapsed < (long)time_to_wait)
+	{
+		ft_precise_usleep(10 * 1000);
+		if (data->death_flag == 1)
+			return (-1);
+		gettimeofday(&current, NULL);
+		elapsed = ft_get_elapsed_time_microseconds(start, current);
+	}
+	return (0);
 }

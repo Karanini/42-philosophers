@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 14:22:41 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 16:25:39 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ int	ft_single_mutex_init(pthread_mutex_t *mutex)
 * locked by the main thread, then by all the other created threads
 * in ft_wise_life() so that each thread waits until all the threads
 * have been created.
+
+* to do if a thread init fails:
+* //death_flag = 1;
+//unlock starting mutex
+* destroy the mutexes and cleanup the memory
 */
 int	ft_init_threads(t_data *data)
 {
@@ -59,3 +64,4 @@ int	ft_init_threads(t_data *data)
 	pthread_mutex_unlock(&data->starting_mtx);
 	return (0);
 }
+
