@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 14:22:41 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:08:47 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int						ft_init_threads(t_data *data);
 int						ft_atoi(const char *nptr);
 long long				ft_get_time(void);
 void					ft_precise_usleep(long usec);
+int						ft_wait_and_check(t_philo *philo, int time_to_wait);
 
 /**********RUN IT ****************/
 void					*ft_wise_life(void *data);

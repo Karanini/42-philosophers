@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 14:04:57 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:09:45 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_eat(t_philo *philo)
 		ft_lock_forks(philo, philo->right_fork, philo->left_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
-		ft_precise_usleep(philo->data->input_args->time_to_eat * 1000);
+		ft_wait_and_check(philo, philo->data->input_args->time_to_eat * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 	}
@@ -73,7 +73,7 @@ void	ft_eat(t_philo *philo)
 		ft_lock_forks(philo, philo->left_fork, philo->right_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
-		ft_precise_usleep(philo->data->input_args->time_to_eat * 1000);
+		ft_wait_and_check(philo, philo->data->input_args->time_to_eat * 1000);
 		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
 	}
