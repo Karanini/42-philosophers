@@ -6,13 +6,11 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 18:41:08 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:04:19 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-static void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 
 void	*ft_wise_life(void *philo_struct)
 {
@@ -42,7 +40,7 @@ void	*ft_wise_life(void *philo_struct)
 	return (NULL);
 }
 
-static void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
+void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 {
 	pthread_mutex_lock(&philo->data->print_mtx);
 	if (ft_check_death_flag(philo->data) == 0 || msg_type == DIE)

@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 17:29:14 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:05:05 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	*ft_monitoring(void *data_struct)
 			if (ft_get_time()
 				- data->philo_tab[i].start_time > data->input_args->time_to_die)
 			{
+				ft_print_msg(&data->philo_tab[i], DIE);
 				pthread_mutex_lock(&data->death_flag_mtx);
 				data->death_flag = 1;
 				pthread_mutex_unlock(&data->death_flag_mtx);
