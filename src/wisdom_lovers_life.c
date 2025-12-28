@@ -6,19 +6,19 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/25 17:52:51 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:04:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void    *ft_wise_life(void *philo_struct)
+void	*ft_wise_life(void *philo_struct)
 {
 	t_data	*data;
 	t_philo	*philo;
-	int	philo_id;
+	int		philo_id;
 
-	philo = (t_philo *) philo_struct;
+	philo = (t_philo *)philo_struct;
 	data = philo->data;
 	philo_id = philo->philo_id;
 	pthread_mutex_lock(&data->starting_mtx);
@@ -26,9 +26,9 @@ void    *ft_wise_life(void *philo_struct)
 	philo->start_time = data->philo_tab[0].start_time;
 	printf("philosopher %d IS ALIIIIVE\n", philo_id);
 	ft_eat(philo);
-	//eat
-	//sleep
-	//think
+	// eat
+	// sleep
+	// think
 	return (NULL);
 }
 
@@ -48,14 +48,20 @@ void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
+void	ft_lock_forks(t_philo *philo, pthread_mutex_t *first_fork,
+		pthread_mutex_t *second_fork)
+{
+	pthread_mutex_lock(first_fork);
+	ft_print_msg(philo, FORK);
+	pthread_mutex_lock(second_fork);
+	ft_print_msg(philo, FORK);
+}
+
 void	ft_eat(t_philo *philo)
 {
 	if (philo->philo_id % 2 == 1)
 	{
-		pthread_mutex_lock(philo->right_fork);
-		ft_print_msg(philo, FORK);
-		pthread_mutex_lock(philo->left_fork);
-		ft_print_msg(philo, FORK);
+		ft_lock_forks(philo, philo->right_fork, philo->left_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
 		ft_precise_usleep(philo->data->input_args->time_to_eat * 1000);
@@ -64,10 +70,7 @@ void	ft_eat(t_philo *philo)
 	}
 	else
 	{
-		pthread_mutex_lock(philo->left_fork);
-		ft_print_msg(philo, FORK);
-		pthread_mutex_lock(philo->right_fork);
-		ft_print_msg(philo, FORK);
+		ft_lock_forks(philo, philo->left_fork, philo->right_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
 		ft_precise_usleep(philo->data->input_args->time_to_eat * 1000);
