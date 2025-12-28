@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 16:25:39 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 17:49:42 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@ int	ft_init_mutexes(t_data *data)
 	if (ft_single_mutex_init(&data->print_mtx) == -1)
 		return (-1);
 	if (ft_single_mutex_init(&data->starting_mtx) == -1)
-		return (-1);
+		return (pthread_mutex_destroy(&data->print_mtx), -1);
 	if (ft_single_mutex_init(&data->death_flag_mtx) == -1)
+	{
+		pthread_mutex_destroy(&data->print_mtx);
+		pthread_mutex_destroy(&data->starting_mtx);
 		return (-1);
+	}
 	data->fork_mtx = ft_init_fork_mutexes(data->input_args->num_of_philos);
 	if (!data->fork_mtx)
+	{
+		pthread_mutex_destroy(&data->print_mtx);
+		pthread_mutex_destroy(&data->starting_mtx);
+		pthread_mutex_destroy(&data->death_flag_mtx);
 		return (-1);
+	}
 	return (0);
 }
 

@@ -92,5 +92,6 @@ void					ft_eat(t_philo *philo);
 
 /**********DIRTY LAUNDRY ****************/
 void					ft_cleanup(t_data *data);
+void					ft_free_data(t_data *data);
 
 #endif

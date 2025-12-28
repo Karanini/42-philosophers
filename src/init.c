@@ -34,13 +34,13 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->fork_mtx = NULL;
 	data->input_args = ft_init_args_struct(ac, av);
 	if (!data->input_args)
-		return (ft_cleanup(data), NULL);
+		return (ft_free_data(data), NULL);
 	data->death_flag = 0;
 	data->philo_tab = ft_init_philosophers(data);
 	if (!data->philo_tab)
-		return (ft_cleanup(data), NULL);
+		return (ft_free_data(data), NULL);
 	if (ft_init_mutexes(data) == -1)
-		return (ft_cleanup(data), NULL);
+		return (ft_free_data(data), NULL);
 	ft_assign_forks_to_philos(data->philo_tab, data->fork_mtx,
 		data->input_args->num_of_philos);
 	return (data);
@@ -108,7 +108,12 @@ pthread_mutex_t	*ft_init_fork_mutexes(int num_of_philos)
 	while (i < num_of_philos)
 	{
 		if (ft_single_mutex_init(&fork_mtx[i]) == -1)
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&fork_mtx[i]);
+			free(fork_mtx);
 			return (NULL);
+		}
 		i++;
 	}
 	return (fork_mtx);
