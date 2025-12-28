@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 17:08:33 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:29:02 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,19 @@ int	ft_wait_and_check(t_philo *philo, int time_to_wait)
 	while (elapsed < (long)time_to_wait)
 	{
 		ft_precise_usleep(10 * 1000);
-		if (philo->data->death_flag == 1)
+		if (ft_check_death_flag(philo->data) == 1)
 			return (-1);
 		gettimeofday(&current, NULL);
 		elapsed = ft_get_elapsed_time_microseconds(start, current);
 	}
+	return (0);
+}
+
+int	ft_check_death_flag(t_data *data)
+{
+	pthread_mutex_lock(&data->death_flag_mtx);
+	if (data->death_flag == 1)
+		return (1);
+	pthread_mutex_unlock(&data->death_flag_mtx);
 	return (0);
 }
