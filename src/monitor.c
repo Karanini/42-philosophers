@@ -6,17 +6,16 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 19:05:05 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:20:29 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "includes/philo.h"
 
 void	*ft_monitoring(void *data_struct)
 {
 	t_data			*data;
 	int				i;
-	struct timeval	current;
 
 	data = (t_data *)data_struct;
 	i = 0;

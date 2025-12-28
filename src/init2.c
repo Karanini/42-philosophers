@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 17:49:42 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:19:44 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ int	ft_init_threads(t_data *data)
 	{
 		if (pthread_create(&data->philo_tab[i].tid, NULL, &ft_wise_life,
 				&data->philo_tab[i]) != 0)
-			return (-1);
+			return (data->death_flag = 1,
+				pthread_mutex_unlock(&data->starting_mtx), -1);
 		i++;
 	}
+	if (pthread_create(&data->monitor_tid, NULL, &ft_monitoring, data) != 0)
+		return (data->death_flag = 1,
+				pthread_mutex_unlock(&data->starting_mtx), -1);
 	data->philo_tab[0].start_time = ft_get_time();
 	pthread_mutex_unlock(&data->starting_mtx);
 	return (0);
 }
-

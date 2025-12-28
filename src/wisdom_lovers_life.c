@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 19:04:19 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:23:21 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ void	*ft_wise_life(void *philo_struct)
 		ft_precise_usleep(1000);
 	while (ft_check_death_flag(data) == 0)
 	{
-		ft_eat(philo);
+		if (ft_eat(philo) == -1)
+			break ;
 		if (ft_check_death_flag(data) == 1)
 			break ;
 		ft_print_msg(philo, SLEEP);
-		ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000);
+		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) == -1)
+			break ;
 		if (ft_check_death_flag(data) == 1)
 			break ;
 		ft_print_msg(philo, THINK);
@@ -46,7 +48,8 @@ void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 	if (ft_check_death_flag(philo->data) == 0 || msg_type == DIE)
 	{
 		if (msg_type == FORK)
-			printf("%lld %d has taken a fork\n", ft_get_time(), philo->philo_id);
+			printf("%lld %d has taken a fork\n", ft_get_time(),
+				philo->philo_id);
 		else if (msg_type == EAT)
 			printf("%lld %d is eating\n", ft_get_time(), philo->philo_id);
 		else if (msg_type == SLEEP)
@@ -68,14 +71,17 @@ void	ft_lock_forks(t_philo *philo, pthread_mutex_t *first_fork,
 	ft_print_msg(philo, FORK);
 }
 
-void	ft_eat(t_philo *philo)
+int	ft_eat(t_philo *philo)
 {
 	if (philo->philo_id % 2 == 1)
 	{
 		ft_lock_forks(philo, philo->right_fork, philo->left_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
-		ft_wait_and_check(philo, philo->data->input_args->time_to_eat * 1000);
+		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
+				* 1000) == -1)
+			return (pthread_mutex_unlock(philo->left_fork),
+				pthread_mutex_unlock(philo->right_fork), -1);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 	}
@@ -84,8 +90,12 @@ void	ft_eat(t_philo *philo)
 		ft_lock_forks(philo, philo->left_fork, philo->right_fork);
 		ft_print_msg(philo, EAT);
 		philo->start_time = ft_get_time();
-		ft_wait_and_check(philo, philo->data->input_args->time_to_eat * 1000);
+		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
+				* 1000) == -1)
+			return (pthread_mutex_unlock(philo->right_fork),
+				pthread_mutex_unlock(philo->left_fork), -1);
 		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(philo->left_fork);
 	}
+	return (0);
 }

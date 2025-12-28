@@ -6,7 +6,7 @@
 #    By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/16 14:08:56 by bkaras-g          #+#    #+#              #
-#    Updated: 2025/12/18 12:05:22 by bkaras-g         ###   ########.fr        #
+#    Updated: 2025/12/28 19:14:09 by bkaras-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_FILES = main.c \
 			init.c \
 			init2.c \
 			utils.c \
+			monitor.c \
 			cleanup.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

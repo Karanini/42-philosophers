@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 19:04:30 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:17:35 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_data
 	pthread_mutex_t		print_mtx;
 	int					death_flag;
 	pthread_mutex_t		death_flag_mtx;
+	pthread_t			monitor_tid;
 }						t_data;
 
 /**********INIT ****************/
@@ -90,7 +91,10 @@ void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 
 /**********RUN IT ****************/
 void					*ft_wise_life(void *data);
-void					ft_eat(t_philo *philo);
+int						ft_eat(t_philo *philo);
+
+/**********MONITORING ****************/
+void					*ft_monitoring(void *data_struct);
 
 /**********DIRTY LAUNDRY ****************/
 void					ft_cleanup(t_data *data);
