@@ -6,13 +6,27 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/25 17:23:00 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:22:41 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-int	ft_mutex_init(pthread_mutex_t *mutex)
+int	ft_init_mutexes(t_data *data)
+{
+	if (ft_single_mutex_init(&data->print_mtx) == -1)
+		return (-1);
+	if (ft_single_mutex_init(&data->starting_mtx) == -1)
+		return (-1);
+	if (ft_single_mutex_init(&data->death_flag_mtx) == -1)
+		return (-1);
+	data->fork_mtx = ft_init_fork_mutexes(data->input_args->num_of_philos);
+	if (!data->fork_mtx)
+		return (-1);
+	return (0);
+}
+
+int	ft_single_mutex_init(pthread_mutex_t *mutex)
 {
 	int	ret;
 
@@ -33,8 +47,6 @@ int	ft_init_threads(t_data *data)
 	int	i;
 
 	i = 0;
-	if (ft_mutex_init(&data->starting_mtx) == -1)
-		return (-1);
 	pthread_mutex_lock(&data->starting_mtx);
 	while (i < data->input_args->num_of_philos)
 	{

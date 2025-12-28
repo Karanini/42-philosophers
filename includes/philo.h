@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 17:49:21 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:22:41 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef struct s_philo
 	int					philo_id;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-	long long start_time;
-		// (1) beginning of the simulation or (2) when the philosopher
-							// starts to eat
+	long long			start_time;
+	// (1) beginning of the simulation or (2) when the philosopher
+	// starts to eat
 	t_data				*data;
 }						t_philo;
 
@@ -65,16 +65,19 @@ typedef struct s_data
 	pthread_mutex_t		*fork_mtx;
 	pthread_mutex_t		starting_mtx;
 	pthread_mutex_t		print_mtx;
+	int					death_flag;
+	pthread_mutex_t		death_flag_mtx;
 }						t_data;
 
 /**********INIT ****************/
 t_data					*ft_init_data(int ac, char *av[]);
 t_args					*ft_init_args_struct(int ac, char *av[]);
 t_philo					*ft_init_philosophers(t_data *data);
+int						ft_init_mutexes(t_data *data);
 pthread_mutex_t			*ft_init_fork_mutexes(int num_of_philos);
 void					ft_assign_forks_to_philos(t_philo *philo_tab,
 							pthread_mutex_t *fork_mtx, int num_philos);
-int						ft_mutex_init(pthread_mutex_t *mutex);
+int						ft_single_mutex_init(pthread_mutex_t *mutex);
 int						ft_init_threads(t_data *data);
 
 /**********UTILS ****************/

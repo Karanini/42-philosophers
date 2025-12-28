@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/25 16:29:23 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:25:00 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->input_args = ft_init_args_struct(ac, av);
 	if (!data->input_args)
 		return (ft_cleanup(data), NULL);
-	if (ft_mutex_init(&data->print_mtx) == -1)
-		return (ft_cleanup(data), NULL);
+	data->death_flag = 0;
 	data->philo_tab = ft_init_philosophers(data);
 	if (!data->philo_tab)
 		return (ft_cleanup(data), NULL);
-	data->fork_mtx = ft_init_fork_mutexes(data->input_args->num_of_philos);
-	if (!data->fork_mtx)
+	if (ft_init_mutexes(data) == -1)
 		return (ft_cleanup(data), NULL);
 	ft_assign_forks_to_philos(data->philo_tab, data->fork_mtx,
 		data->input_args->num_of_philos);
@@ -109,7 +107,7 @@ pthread_mutex_t	*ft_init_fork_mutexes(int num_of_philos)
 	i = 0;
 	while (i < num_of_philos)
 	{
-		if (ft_mutex_init(&fork_mtx[i]) == -1)
+		if (ft_single_mutex_init(&fork_mtx[i]) == -1)
 			return (NULL);
 		i++;
 	}

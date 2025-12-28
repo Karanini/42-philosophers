@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/18 11:44:10 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 14:25:26 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,8 @@ long long	ft_get_time(void)
 		return (-1);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
+
+// void	ft_wait_and_check(t_data *data, int time_to_wait)
+// {
+
+// }
