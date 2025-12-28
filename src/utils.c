@@ -110,7 +110,10 @@ int	ft_check_death_flag(t_data *data)
 {
 	pthread_mutex_lock(&data->death_flag_mtx);
 	if (data->death_flag == 1)
+	{
+		pthread_mutex_unlock(&data->death_flag_mtx);
 		return (1);
+	}
 	pthread_mutex_unlock(&data->death_flag_mtx);
 	return (0);
 }

@@ -6,11 +6,13 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 18:28:18 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:41:08 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+static void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 
 void	*ft_wise_life(void *philo_struct)
 {
@@ -24,27 +26,38 @@ void	*ft_wise_life(void *philo_struct)
 	pthread_mutex_lock(&data->starting_mtx);
 	pthread_mutex_unlock(&data->starting_mtx);
 	philo->start_time = data->philo_tab[0].start_time;
-	printf("philosopher %d IS ALIIIIVE\n", philo_id);
-	ft_eat(philo);
-	// eat
-	// sleep
-	// think
+	if (philo->philo_id % 2 == 0)
+		ft_precise_usleep(1000);
+	while (ft_check_death_flag(data) == 0)
+	{
+		ft_eat(philo);
+		if (ft_check_death_flag(data) == 1)
+			break ;
+		ft_print_msg(philo, SLEEP);
+		ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000);
+		if (ft_check_death_flag(data) == 1)
+			break ;
+		ft_print_msg(philo, THINK);
+	}
 	return (NULL);
 }
 
-void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
+static void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 {
 	pthread_mutex_lock(&philo->data->print_mtx);
-	if (msg_type == FORK)
-		printf("%lld %d has taken a fork\n", ft_get_time(), philo->philo_id);
-	else if (msg_type == EAT)
-		printf("%lld %d is eating\n", ft_get_time(), philo->philo_id);
-	else if (msg_type == SLEEP)
-		printf("%lld %d is sleeping\n", ft_get_time(), philo->philo_id);
-	else if (msg_type == THINK)
-		printf("%lld %d is thinking\n", ft_get_time(), philo->philo_id);
-	else if (msg_type == DIE)
-		printf("%lld %d died\n", ft_get_time(), philo->philo_id);
+	if (ft_check_death_flag(philo->data) == 0 || msg_type == DIE)
+	{
+		if (msg_type == FORK)
+			printf("%lld %d has taken a fork\n", ft_get_time(), philo->philo_id);
+		else if (msg_type == EAT)
+			printf("%lld %d is eating\n", ft_get_time(), philo->philo_id);
+		else if (msg_type == SLEEP)
+			printf("%lld %d is sleeping\n", ft_get_time(), philo->philo_id);
+		else if (msg_type == THINK)
+			printf("%lld %d is thinking\n", ft_get_time(), philo->philo_id);
+		else if (msg_type == DIE)
+			printf("%lld %d died\n", ft_get_time(), philo->philo_id);
+	}
 	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
