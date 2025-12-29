@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 13:51:19 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 14:06:00 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,24 @@ void	*ft_wise_life(void *philo_struct)
 	return (NULL);
 }
 
+/*
+* If uneven number of philosophers, need to implement a `time_to_think`
+* to avoid a philo to starve because he does not manage to grab the forks
+* before his neighboors.
+
+* A philosopher must wait for his 2 neighbors to eat before it is his
+* turn again. So need to have the cycle respecting `time_to_sleep +
+* time_to_think = 2 * time_to_eat`.
+* Hence `time_to_think = (2 * time_to_eat - time_to_sleep)`
+*
+* Also, need to check if the philosophers have the time to be polite
+* to let their neighbors eat:
+* `Total Cycle=Eat+Sleep+Think`
+* `Total Cycle=Eat+Sleep+(2×Eat−Sleep)=3×Eat`
+* So need to check `if time_to_die > (3 * time_to_eat)` before assigning
+* a thinking time, so that we are sure that the philosopher can have
+* a thinking time without starving.
+*/
 static int	ft_think(t_philo *philo)
 {
 	int	time_to_think;
@@ -56,7 +74,7 @@ static int	ft_think(t_philo *philo)
 	time_to_sleep = philo->data->input_args->time_to_sleep;
 	time_to_eat = philo->data->input_args->time_to_eat;
 	if (philo->data->input_args->num_of_philos % 2 == 1
-		&& time_to_die > (3 * time_to_sleep))
+		&& time_to_die > (3 * time_to_eat))
 	{
 		time_to_think = (2 * time_to_eat - time_to_sleep);
 		if (time_to_think < 0)
