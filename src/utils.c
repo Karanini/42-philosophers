@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 18:29:02 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 11:44:48 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,16 @@ long long	ft_get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-// waits 10 ms then checks if death_flag is set to 1,
-// until time_to_wait is reached
+
+/**
+ * @brief waits 10 ms with `ft_precise_usleep` then checks if `death_flag`
+ * is set to 1, until `time_to_wait` is reached
+ *
+ * @param philo Pointer to the philosopher structure.
+ * @param time_to_wait The total time to wait in microseconds.
+ * @return -1 if the philosopher died or the simulation stopped during the wait,
+ *         0 otherwise.
+ */
 int	ft_wait_and_check(t_philo *philo, int time_to_wait)
 {
 	long			elapsed;

@@ -6,11 +6,13 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/28 19:23:21 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 11:46:37 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+static int		ft_think(t_philo *philo);
 
 void	*ft_wise_life(void *philo_struct)
 {
@@ -33,13 +35,34 @@ void	*ft_wise_life(void *philo_struct)
 		if (ft_check_death_flag(data) == 1)
 			break ;
 		ft_print_msg(philo, SLEEP);
-		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) == -1)
+		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000)
+			== -1)
 			break ;
 		if (ft_check_death_flag(data) == 1)
 			break ;
-		ft_print_msg(philo, THINK);
+		if (ft_think(philo) == -1)
+			break ;
+		// ft_print_msg(philo, THINK);
 	}
 	return (NULL);
+}
+
+static int		ft_think(t_philo *philo)
+{
+	int	time_to_think;
+
+	time_to_think = 0;
+	ft_print_msg(philo, THINK);
+	if (philo->data->input_args->num_of_philos % 2 == 1 &&
+	philo->data->input_args->time_to_die > (2 * philo->data->input_args->time_to_sleep + philo->data->input_args->time_to_eat))
+	{
+		time_to_think = (2 * philo->data->input_args->time_to_eat - philo->data->input_args->time_to_sleep);
+		if (time_to_think < 0)
+		time_to_think = 0;
+		if (ft_wait_and_check(philo, time_to_think * 1000) == -1)
+			return (-1);
+	}
+	return (0);
 }
 
 void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
