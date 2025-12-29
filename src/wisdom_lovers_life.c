@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 13:27:09 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 13:51:19 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_think(t_philo *philo)
 	time_to_sleep = philo->data->input_args->time_to_sleep;
 	time_to_eat = philo->data->input_args->time_to_eat;
 	if (philo->data->input_args->num_of_philos % 2 == 1
-		&& time_to_die > (2 * time_to_sleep + time_to_eat))
+		&& time_to_die > (3 * time_to_sleep))
 	{
 		time_to_think = (2 * time_to_eat - time_to_sleep);
 		if (time_to_think < 0)
