@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 15:31:14 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 16:05:44 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ int	ft_init_threads(t_data *data)
 		pthread_mutex_unlock(&data->starting_mtx);
 		return (-1);
 	}
-	data->philo_tab[0].start_time = ft_get_time();
-	printf("simulation start time=%lld\n", data->philo_tab[0].start_time);
+	data->sim_start_time = ft_get_time();
 	pthread_mutex_unlock(&data->starting_mtx);
 	return (0);
 }

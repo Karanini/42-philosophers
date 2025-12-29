@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 14:53:47 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 16:01:55 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_data
 	int					death_flag;
 	pthread_mutex_t		death_flag_mtx;
 	pthread_t			monitor_tid;
+	long long			sim_start_time;
 }						t_data;
 
 /**********INIT ****************/

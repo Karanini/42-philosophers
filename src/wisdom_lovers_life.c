@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 14:06:00 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 16:04:42 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_wise_life(void *philo_struct)
 	data = philo->data;
 	pthread_mutex_lock(&data->starting_mtx);
 	pthread_mutex_unlock(&data->starting_mtx);
-	philo->start_time = data->philo_tab[0].start_time;
+	philo->start_time = data->sim_start_time;
 	if (philo->philo_id % 2 == 0)
 		ft_precise_usleep(1000);
 	while (ft_check_death_flag(data) == 0)
@@ -33,8 +33,8 @@ void	*ft_wise_life(void *philo_struct)
 		if (ft_check_death_flag(data) == 1)
 			break ;
 		ft_print_msg(philo, SLEEP);
-		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000)
-			== -1)
+		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) ==
+			-1)
 			break ;
 		if (ft_check_death_flag(data) == 1)
 			break ;
@@ -73,8 +73,8 @@ static int	ft_think(t_philo *philo)
 	time_to_die = philo->data->input_args->time_to_die;
 	time_to_sleep = philo->data->input_args->time_to_sleep;
 	time_to_eat = philo->data->input_args->time_to_eat;
-	if (philo->data->input_args->num_of_philos % 2 == 1
-		&& time_to_die > (3 * time_to_eat))
+	if (philo->data->input_args->num_of_philos % 2 == 1 && time_to_die > (3
+			* time_to_eat))
 	{
 		time_to_think = (2 * time_to_eat - time_to_sleep);
 		if (time_to_think < 0)
@@ -91,16 +91,20 @@ void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 	if (ft_check_death_flag(philo->data) == 0 || msg_type == DIE)
 	{
 		if (msg_type == FORK)
-			printf("%lld %d has taken a fork\n", ft_get_time(),
-				philo->philo_id);
+			printf("%lld %d has taken a fork\n", ft_get_time()
+				- philo->data->sim_start_time, philo->philo_id);
 		else if (msg_type == EAT)
-			printf("%lld %d is eating\n", ft_get_time(), philo->philo_id);
+			printf("%lld %d is eating\n", ft_get_time()
+				- philo->data->sim_start_time, philo->philo_id);
 		else if (msg_type == SLEEP)
-			printf("%lld %d is sleeping\n", ft_get_time(), philo->philo_id);
+			printf("%lld %d is sleeping\n", ft_get_time()
+				- philo->data->sim_start_time, philo->philo_id);
 		else if (msg_type == THINK)
-			printf("%lld %d is thinking\n", ft_get_time(), philo->philo_id);
+			printf("%lld %d is thinking\n", ft_get_time()
+				- philo->data->sim_start_time, philo->philo_id);
 		else if (msg_type == DIE)
-			printf("%lld %d died\n", ft_get_time(), philo->philo_id);
+			printf("%lld %d died\n", ft_get_time()
+				- philo->data->sim_start_time, philo->philo_id);
 	}
 	pthread_mutex_unlock(&philo->data->print_mtx);
 }
