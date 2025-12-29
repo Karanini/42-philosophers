@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 13:12:40 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 14:55:49 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int	ft_init_threads(t_data *data)
 
 	i = 0;
 	pthread_mutex_lock(&data->starting_mtx);
+	if (data->input_args->num_of_philos == 1)
+	{
+		if (pthread_create(&data->philo_tab[0].tid, NULL, &ft_solitary_life,
+				&data->philo_tab[0]) != 0)
+			return (pthread_mutex_unlock(&data->starting_mtx), -1);
+	}
 	while (i < data->input_args->num_of_philos)
 	{
 		if (pthread_create(&data->philo_tab[i].tid, NULL, &ft_wise_life,
@@ -71,8 +77,8 @@ int	ft_init_threads(t_data *data)
 		i++;
 	}
 	if (pthread_create(&data->monitor_tid, NULL, &ft_monitoring, data) != 0)
-		return (data->death_flag = 1,
-				pthread_mutex_unlock(&data->starting_mtx), -1);
+		return (data->death_flag = 1, pthread_mutex_unlock(&data->starting_mtx),
+			-1);
 	data->philo_tab[0].start_time = ft_get_time();
 	printf("simulation start time=%lld\n", data->philo_tab[0].start_time);
 	pthread_mutex_unlock(&data->starting_mtx);

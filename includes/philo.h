@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/28 19:17:35 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 14:53:47 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 /**********RUN IT ****************/
 void					*ft_wise_life(void *data);
 int						ft_eat(t_philo *philo);
+void					*ft_solitary_life(void *philo_struct);
 
 /**********MONITORING ****************/
 void					*ft_monitoring(void *data_struct);

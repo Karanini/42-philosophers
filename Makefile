@@ -6,7 +6,7 @@
 #    By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/16 14:08:56 by bkaras-g          #+#    #+#              #
-#    Updated: 2025/12/28 19:14:09 by bkaras-g         ###   ########.fr        #
+#    Updated: 2025/12/29 14:54:05 by bkaras-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_DIR = src
 
 SRC_FILES = main.c \
 			wisdom_lovers_life.c \
+			solitary_life.c \
 			init.c \
 			init2.c \
 			utils.c \
