@@ -6,12 +6,19 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 11:44:48 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 16:28:31 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+/*
+* modified function for the philosophers project. Changes:
+* - no whitespace checking before the number to convert
+* - returns -1 if the number is negative (negative number not valid for philo)
+* - returns -2 if the number is > INT_MAX
+* - returns -3 if the number has two or more `+` or `-` signs
+*/
 int	ft_atoi(const char *nptr)
 {
 	size_t	i;
@@ -21,19 +28,19 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	sign = 1;
 	res = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
 	if ((nptr[i] == '-' || nptr[i] == '+') && (nptr[i + 1] == '-'
 			|| nptr[i + 1] == '+'))
-		return (0);
+		return (-3);
 	if (nptr[i] == '-')
-		sign = -1;
+		return (-1);
 	if (nptr[i] == '+' || nptr[i] == '-')
 		i++;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		res *= 10;
 		res += nptr[i] - '0';
+		if (res > INT_MAX)
+			return (-2);
 		i++;
 	}
 	return (res * sign);

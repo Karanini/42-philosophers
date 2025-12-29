@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 16:01:55 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 16:23:27 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void					ft_assign_forks_to_philos(t_philo *philo_tab,
 							pthread_mutex_t *fork_mtx, int num_philos);
 int						ft_single_mutex_init(pthread_mutex_t *mutex);
 int						ft_init_threads(t_data *data);
+
+/**********PARSING ****************/
+int	ft_parse_input_args(t_args *args, int nb_args);
 
 /**********UTILS ****************/
 int						ft_atoi(const char *nptr);
