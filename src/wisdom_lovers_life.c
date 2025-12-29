@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 11:51:10 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/29 13:22:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ void	*ft_wise_life(void *philo_struct)
 static int	ft_think(t_philo *philo)
 {
 	int	time_to_think;
+	int	time_to_die;
+	int	time_to_sleep;
+	int	time_to_eat;
 
-	time_to_think = 0;
 	ft_print_msg(philo, THINK);
 	if (philo->data->input_args->num_of_philos % 2 == 1
-		&& philo->data->input_args->time_to_die > (2
-			* philo->data->input_args->time_to_sleep
-			+ philo->data->input_args->time_to_eat))
+		&& time_to_die > (2 * time_to_sleep + time_to_eat))
 	{
-		time_to_think = (2 * philo->data->input_args->time_to_eat
-				- philo->data->input_args->time_to_sleep);
+		time_to_die = philo->data->input_args->time_to_die;
+		time_to_sleep = philo->data->input_args->time_to_sleep;
+		time_to_eat = philo->data->input_args->time_to_eat;
+		time_to_think = (2 * time_to_eat - time_to_sleep);
 		if (time_to_think < 0)
 			time_to_think = 0;
 		if (ft_wait_and_check(philo, time_to_think * 1000) == -1)
