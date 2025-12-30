@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:18:33 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:22:34 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 static int	ft_all_philos_ate_well(t_data *data);
 static int	ft_reaper(t_data *data);
 
+/*
+* monitoring routine to check if a philosopher died or, if applicable, if all
+* the philosophers ate enough meals
+*/
 void	*ft_monitoring(void *data_struct)
 {
 	t_data	*data;
@@ -27,27 +31,18 @@ void	*ft_monitoring(void *data_struct)
 		ft_precise_usleep(1000);
 		if (ft_reaper(data))
 			return (NULL);
-		// while (i < data->input_args->num_of_philos)
-		// {
-		// 	if (ft_get_time()
-		// 		- data->philo_tab[i].start_time > data->input_args->time_to_die)
-		// 	{
-		// 		ft_print_msg(&data->philo_tab[i], DIE);
-		// 		ft_raise_death_flag(data);
-		// 		return (NULL);
-		// 	}
-		// 	i++;
-		// }
 		if (data->input_args->number_of_meals > 0
 			&& ft_all_philos_ate_well(data))
-		{
-			ft_raise_death_flag(data);
-			return (NULL);
-		}
+			return (ft_raise_death_flag(data), NULL);
 	}
 	return (NULL);
 }
 
+/*
+* checks if a philosopher died of starvation. I fit's the case,
+* prints a message announcing the death and raised the death_flag
+* to stop the simulation
+*/
 static int	ft_reaper(t_data *data)
 {
 	int	i;
@@ -67,6 +62,10 @@ static int	ft_reaper(t_data *data)
 	return (0);
 }
 
+/*
+* checks if all the philos ate `number_of_meals` times, if this argument is
+* specified.
+*/
 static int	ft_all_philos_ate_well(t_data *data)
 {
 	int	i;
