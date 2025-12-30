@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:59:47 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:35:50 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	*ft_monitoring(void *data_struct)
 	i = 0;
 	pthread_mutex_lock(&data->starting_mtx);
 	pthread_mutex_unlock(&data->starting_mtx);
-	ft_precise_usleep(1000);
 	while (1)
 	{
+		ft_precise_usleep(1000);
 		while (i < data->input_args->num_of_philos)
 		{
 			if (ft_get_time()
