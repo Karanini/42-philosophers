@@ -1,0 +1,5 @@
+==308022== Helgrind, a thread error detector
+==308022== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==308022== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==308022== Command: ./philo 1 800 200 200 1
+==308022== 

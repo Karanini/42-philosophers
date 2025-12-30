@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 14:42:44 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 16:03:17 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 17:02:37 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	*ft_solitary_life(void *philo_struct)
 	data = philo->data;
 	pthread_mutex_lock(&data->starting_mtx);
 	pthread_mutex_unlock(&data->starting_mtx);
+	pthread_mutex_lock(&philo->meal_mtx);
 	philo->start_time = data->sim_start_time;
+	pthread_mutex_unlock(&philo->meal_mtx);
 	pthread_mutex_lock(philo->left_fork);
 	ft_print_msg(philo, FORK);
 	while (1)
