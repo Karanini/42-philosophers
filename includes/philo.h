@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 13:52:36 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:59:45 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ void					*ft_monitoring(void *data_struct);
 /**********DIRTY LAUNDRY ****************/
 void					ft_cleanup(t_data *data);
 void					ft_free_data(t_data *data);
-void					ft_destroy_fork_mtx(t_data *data);
+void					ft_destroy_fork_mutexes(t_data *data);
 
 #endif

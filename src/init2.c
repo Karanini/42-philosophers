@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 13:53:33 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:59:45 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	ft_init_mutexes(t_data *data)
 		pthread_mutex_destroy(&data->death_flag_mtx);
 		return (-1);
 	}
-	// if (ft_init_meal_mutexes(data) == -1)
-	// {
-	// 	pthread_mutex_destroy(&data->print_mtx);
-	// 	pthread_mutex_destroy(&data->starting_mtx);
-	// 	pthread_mutex_destroy(&data->death_flag_mtx);
-	// 	ft_destroy_fork_mutexes(data);
-	// }
+	if (ft_init_meal_mutexes(data) == -1)
+	{
+		pthread_mutex_destroy(&data->print_mtx);
+		pthread_mutex_destroy(&data->starting_mtx);
+		pthread_mutex_destroy(&data->death_flag_mtx);
+		ft_destroy_fork_mutexes(data);
+	}
 	return (0);
 }
 

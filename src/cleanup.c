@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 18:26:35 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 13:56:09 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 13:59:56 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,24 @@ void	ft_free_data(t_data *data)
 
 void	ft_cleanup(t_data *data)
 {
-	int	i;
+	if (!data)
+		return ;
+	ft_destroy_global_mutexes(data);
+	ft_destroy_fork_mutexes(data);
+	ft_destroy_meal_mutexes(data);
+	ft_free_data(data);
+}
 
+void	ft_destroy_global_mutexes(t_data *data)
+{
 	if (!data)
 		return ;
 	pthread_mutex_destroy(&data->print_mtx);
 	pthread_mutex_destroy(&data->starting_mtx);
 	pthread_mutex_destroy(&data->death_flag_mtx);
-	ft_destroy_fork_mtx(data);
-	ft_destroy_meal_mtx(data);
-	ft_free_data(data);
 }
 
-void	ft_destroy_fork_mtx(t_data *data)
+void	ft_destroy_fork_mutexes(t_data *data)
 {
 	int	i;
 
@@ -54,7 +59,7 @@ void	ft_destroy_fork_mtx(t_data *data)
 	}
 }
 
-void	ft_destroy_meal_mtx(t_data *data)
+void	ft_destroy_meal_mutexes(t_data *data)
 {
 	int	i;
 
