@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 16:28:31 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 10:57:41 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 * modified function for the philosophers project. Changes:
 * - no whitespace checking before the number to convert
 * - returns -1 if the number is negative (negative number not valid for philo)
-* - returns -2 if the number is > INT_MAX
+* - returns -2 if the number is `> INT_MAX / 1000`
 * - returns -3 if the number has two or more `+` or `-` signs
+*
+* Why `INT_MAX / 1000` ? The arguments are bound to be used with `usleep()`
+* function which accepts numbers to `INT_MAX`. `usleep()` takes an arg
+* in microseconds and the input args of philo are given in ms
+* so the input args have to be `< INT_MAX / 1000`
 */
 int	ft_atoi(const char *nptr)
 {
@@ -39,7 +44,7 @@ int	ft_atoi(const char *nptr)
 	{
 		res *= 10;
 		res += nptr[i] - '0';
-		if (res > INT_MAX)
+		if (res > INT_MAX / 1000)
 			return (-2);
 		i++;
 	}
@@ -112,7 +117,7 @@ int	ft_wait_and_check(t_philo *philo, int time_to_wait)
 	elapsed = 0;
 	while (elapsed < (long)time_to_wait)
 	{
-		ft_precise_usleep(10 * 1000);
+		ft_precise_usleep(1 * 1000);
 		if (ft_check_death_flag(philo->data) == 1)
 			return (-1);
 		gettimeofday(&current, NULL);

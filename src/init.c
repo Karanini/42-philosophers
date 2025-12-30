@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 16:37:55 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 10:57:58 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_data	*ft_init_data(int ac, char *av[])
 	data->philo_tab = NULL;
 	data->fork_mtx = NULL;
 	data->input_args = ft_init_args_struct(ac, av);
-	printf("time_to_eat=%d\n", data->input_args->time_to_eat);
 	if (!data->input_args)
 		return (ft_free_data(data), NULL);
 	data->death_flag = 0;
