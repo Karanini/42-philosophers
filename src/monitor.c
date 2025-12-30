@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:22:34 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:24:20 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,16 @@ static int	ft_reaper(t_data *data)
 	i = 0;
 	while (i < data->input_args->num_of_philos)
 	{
+		pthread_mutex_lock(&data->philo_tab[i].meal_mtx);
 		if (ft_get_time()
 			- data->philo_tab[i].start_time > data->input_args->time_to_die)
 		{
+			pthread_mutex_unlock(&data->philo_tab[i].meal_mtx);
 			ft_print_msg(&data->philo_tab[i], DIE);
 			ft_raise_death_flag(data);
 			return (1);
 		}
+		pthread_mutex_unlock(&data->philo_tab[i].meal_mtx);
 		i++;
 	}
 	return (0);
