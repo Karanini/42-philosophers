@@ -6,14 +6,13 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 11:59:08 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:04:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
 static int	ft_think(t_philo *philo);
-static int	ft_all_philos_ate_well(t_philo *philo);
 
 void	*ft_wise_life(void *philo_struct)
 {

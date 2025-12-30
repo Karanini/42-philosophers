@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 10:57:58 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:04:09 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,56 +97,4 @@ t_philo	*ft_init_philosophers(t_data *data)
 		i++;
 	}
 	return (philo_tab);
-}
-
-pthread_mutex_t	*ft_init_fork_mutexes(int num_of_philos)
-{
-	pthread_mutex_t	*fork_mtx;
-	int				i;
-
-	fork_mtx = malloc(sizeof(pthread_mutex_t)
-			* num_of_philos);
-	if (!fork_mtx)
-		return (NULL);
-	i = 0;
-	while (i < num_of_philos)
-	{
-		if (ft_single_mutex_init(&fork_mtx[i]) == -1)
-		{
-			while (--i >= 0)
-				pthread_mutex_destroy(&fork_mtx[i]);
-			free(fork_mtx);
-			return (NULL);
-		}
-		i++;
-	}
-	return (fork_mtx);
-}
-
-/**
- * @brief Assigns fork mutexes to each philosopher.
- *
- * This function iterates through the array of philosophers and assigns pointers
- * to the appropriate fork mutexes (left and right) for each philosopher.
- * It handles the logic to ensure that adjacent philosophers share the correct
- * forks.
- *
- * @param philo_tab Pointer to the array of philosopher structures.
- * @param fork_mtx  Pointer to the array of mutexes representing the forks.
- * @param philo_nbr The total number of philosophers.
- */
-void	ft_assign_forks_to_philos(t_philo *philo_tab, pthread_mutex_t *fork_mtx,
-		int num_philos)
-{
-	int	i;
-
-	philo_tab[0].left_fork = &fork_mtx[num_philos - 1];
-	philo_tab[0].right_fork = &fork_mtx[0];
-	i = 1;
-	while (i < num_philos)
-	{
-		philo_tab[i].left_fork = &fork_mtx[i - 1];
-		philo_tab[i].right_fork = &fork_mtx[i];
-		i++;
-	}
 }
