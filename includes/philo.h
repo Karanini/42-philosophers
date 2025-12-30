@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:10:59 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:18:06 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 void					ft_lock_forks(t_philo *philo,
 							pthread_mutex_t *first_fork,
 							pthread_mutex_t *second_fork);
-void					ft_unlock_forks(t_philo *philo,
-							pthread_mutex_t *first_fork,
+void					ft_unlock_forks(pthread_mutex_t *first_fork,
 							pthread_mutex_t *second_fork);
 
 /**********RUN IT ****************/

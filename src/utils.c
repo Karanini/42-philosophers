@@ -6,24 +6,24 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:10:21 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:17:38 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
 /*
-* modified function for the philosophers project. Changes:
-* - no whitespace checking before the number to convert
-* - returns -1 if the number is negative (negative number not valid for philo)
-* - returns -2 if the number is `> INT_MAX / 1000`
-* - returns -3 if the number has two or more `+` or `-` signs
-*
-* Why `INT_MAX / 1000` ? The arguments are bound to be used with `usleep()`
-* function which accepts numbers to `INT_MAX`. `usleep()` takes an arg
-* in microseconds and the input args of philo are given in ms
-* so the input args have to be `< INT_MAX / 1000`
-*/
+ * modified function for the philosophers project. Changes:
+ * - no whitespace checking before the number to convert
+ * - returns -1 if the number is negative (negative number not valid for philo)
+ * - returns -2 if the number is `> INT_MAX / 1000`
+ * - returns -3 if the number has two or more `+` or `-` signs
+ *
+ * Why `INT_MAX / 1000` ? The arguments are bound to be used with `usleep()`
+ * function which accepts numbers to `INT_MAX`. `usleep()` takes an arg
+ * in microseconds and the input args of philo are given in ms
+ * so the input args have to be `< INT_MAX / 1000`
+ */
 int	ft_atoi(const char *nptr)
 {
 	size_t	i;
@@ -33,8 +33,8 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	sign = 1;
 	res = 0;
-	if ((nptr[i] == '-' || nptr[i] == '+') && (nptr[i + 1] == '-'
-			|| nptr[i + 1] == '+'))
+	if ((nptr[i] == '-' || nptr[i] == '+') && (nptr[i + 1] == '-' || nptr[i
+			+ 1] == '+'))
 		return (-3);
 	if (nptr[i] == '-')
 		return (-1);
@@ -72,9 +72,9 @@ void	ft_lock_forks(t_philo *philo, pthread_mutex_t *first_fork,
 	ft_print_msg(philo, FORK);
 }
 
-void	ft_unlock_forks(t_philo *philo, pthread_mutex_t *first_fork,
+void	ft_unlock_forks(pthread_mutex_t *first_fork,
 		pthread_mutex_t *second_fork)
 {
-	pthread_mutex_lock(first_fork);
-	pthread_mutex_lock(second_fork);
+	pthread_mutex_unlock(first_fork);
+	pthread_mutex_unlock(second_fork);
 }
