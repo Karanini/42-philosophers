@@ -6,13 +6,14 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 11:09:22 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:59:08 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
 static int	ft_think(t_philo *philo);
+static int	ft_all_philos_ate_well(t_philo *philo);
 
 void	*ft_wise_life(void *philo_struct)
 {
@@ -118,10 +119,8 @@ int	ft_eat(t_philo *philo)
 		philo->start_time = ft_get_time();
 		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
 				* 1000) == -1)
-			return (pthread_mutex_unlock(philo->left_fork),
-				pthread_mutex_unlock(philo->right_fork), -1);
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
+			return (ft_unlock_forks(philo->left_fork, philo->right_fork), -1);
+		ft_unlock_forks(philo->left_fork, philo->right_fork);
 	}
 	else
 	{
@@ -130,10 +129,10 @@ int	ft_eat(t_philo *philo)
 		philo->start_time = ft_get_time();
 		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
 				* 1000) == -1)
-			return (pthread_mutex_unlock(philo->right_fork),
-				pthread_mutex_unlock(philo->left_fork), -1);
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
+			return (ft_unlock_forks(philo->right_fork, philo->left_fork), -1);
+		ft_unlock_forks(philo->right_fork, philo->left_fork);
 	}
+	if (philo->data->input_args->number_of_meals > 0)
+		philo->meals_eaten++;
 	return (0);
 }

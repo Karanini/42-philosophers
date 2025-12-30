@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:18:06 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:46:32 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ long long				ft_get_time(void);
 void					ft_precise_usleep(long usec);
 int						ft_wait_and_check(t_philo *philo, int time_to_wait);
 int						ft_check_death_flag(t_data *data);
+void					ft_raise_death_flag(t_data *data);
 void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
 void					ft_lock_forks(t_philo *philo,
 							pthread_mutex_t *first_fork,
