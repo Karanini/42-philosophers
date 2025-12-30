@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 14:01:03 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:06:58 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,20 @@ typedef struct s_data
 	long long			sim_start_time;
 }						t_data;
 
-/**********INIT ****************/
+/**********INIT DATA****************/
 t_data					*ft_init_data(int ac, char *av[]);
 t_args					*ft_init_args_struct(int ac, char *av[]);
 t_philo					*ft_init_philosophers(t_data *data);
+
+/**********INIT MUTEXES****************/
 int						ft_init_mutexes(t_data *data);
 pthread_mutex_t			*ft_init_fork_mutexes(int num_of_philos);
+int						ft_init_meal_mutexes(t_data *data);
 void					ft_assign_forks_to_philos(t_philo *philo_tab,
 							pthread_mutex_t *fork_mtx, int num_philos);
 int						ft_single_mutex_init(pthread_mutex_t *mutex);
+
+/**********INIT THREADS****************/
 int						ft_init_threads(t_data *data);
 
 /**********PARSING ****************/
@@ -112,5 +117,6 @@ void					ft_cleanup(t_data *data);
 void					ft_free_data(t_data *data);
 void					ft_destroy_global_mutexes(t_data *data);
 void					ft_destroy_fork_mutexes(t_data *data);
+void					ft_destroy_meal_mutexes(t_data *data);
 
 #endif

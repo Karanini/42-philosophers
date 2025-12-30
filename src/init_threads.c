@@ -6,11 +6,13 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 14:02:41 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 14:03:16 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:06:09 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+static int	ft_init_philo_threads(t_data *data);
 
 /*
 * initializing the philosophers' threads. The `starting_mtx` mutex is

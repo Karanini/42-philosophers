@@ -6,16 +6,18 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 13:35:50 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:08:14 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+static int	ft_all_philos_ate_well(t_data *data);
+
 void	*ft_monitoring(void *data_struct)
 {
-	t_data			*data;
-	int				i;
+	t_data	*data;
+	int		i;
 
 	data = (t_data *)data_struct;
 	i = 0;
@@ -33,7 +35,8 @@ void	*ft_monitoring(void *data_struct)
 				ft_raise_death_flag(data);
 				return (NULL);
 			}
-			if (ft_all_philos_ate_well(data))
+			if (data->input_args->number_of_meals > 0
+				&& ft_all_philos_ate_well(data))
 			{
 				ft_raise_death_flag(data);
 				return (NULL);
