@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 14:04:57 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:54:31 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	ft_eat(t_philo *philo)
 	{
 		ft_lock_forks(philo, philo->right_fork, philo->left_fork);
 		ft_print_msg(philo, EAT);
-		philo->start_time = ft_get_time();
+		ft_grant_more_life(philo);
 		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
 				* 1000) == -1)
 			return (ft_unlock_forks(philo->left_fork, philo->right_fork), -1);
@@ -125,13 +125,13 @@ int	ft_eat(t_philo *philo)
 	{
 		ft_lock_forks(philo, philo->left_fork, philo->right_fork);
 		ft_print_msg(philo, EAT);
-		philo->start_time = ft_get_time();
+		ft_grant_more_life(philo);
 		if (ft_wait_and_check(philo, philo->data->input_args->time_to_eat
 				* 1000) == -1)
 			return (ft_unlock_forks(philo->right_fork, philo->left_fork), -1);
 		ft_unlock_forks(philo->right_fork, philo->left_fork);
 	}
 	if (philo->data->input_args->number_of_meals > 0)
-		philo->meals_eaten++;
+		ft_mark_full_belly(philo);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:45:58 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:34:26 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,4 @@ void	ft_raise_death_flag(t_data *data)
 	pthread_mutex_lock(&data->death_flag_mtx);
 	data->death_flag = 1;
 	pthread_mutex_unlock(&data->death_flag_mtx);
-}
-
-void	ft_lock_forks(t_philo *philo, pthread_mutex_t *first_fork,
-		pthread_mutex_t *second_fork)
-{
-	pthread_mutex_lock(first_fork);
-	ft_print_msg(philo, FORK);
-	pthread_mutex_lock(second_fork);
-	ft_print_msg(philo, FORK);
-}
-
-void	ft_unlock_forks(pthread_mutex_t *first_fork,
-		pthread_mutex_t *second_fork)
-{
-	pthread_mutex_unlock(first_fork);
-	pthread_mutex_unlock(second_fork);
 }

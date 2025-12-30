@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:06:58 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:53:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,15 @@ int						ft_wait_and_check(t_philo *philo, int time_to_wait);
 int						ft_check_death_flag(t_data *data);
 void					ft_raise_death_flag(t_data *data);
 void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
+
+/**********UTILS_EAT ****************/
 void					ft_lock_forks(t_philo *philo,
 							pthread_mutex_t *first_fork,
 							pthread_mutex_t *second_fork);
 void					ft_unlock_forks(pthread_mutex_t *first_fork,
 							pthread_mutex_t *second_fork);
+void					ft_grant_more_life(t_philo *philo);
+void					ft_mark_full_belly(t_philo *philo);
 
 /**********RUN IT ****************/
 void					*ft_wise_life(void *data);
