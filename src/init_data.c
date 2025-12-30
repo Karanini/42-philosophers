@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 14:04:09 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 16:56:42 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ t_philo	*ft_init_philosophers(t_data *data)
 		philo_tab[i].tid = -1;
 		philo_tab[i].philo_id = i + 1;
 		philo_tab[i].start_time = 0;
+		philo_tab[i].meals_eaten = 0;
 		philo_tab[i].data = data;
 		i++;
 	}
