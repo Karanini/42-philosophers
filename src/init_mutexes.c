@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init2.c                                            :+:      :+:    :+:   */
+/*   init_mutexes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 14:03:23 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 14:11:22 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,22 @@ void	ft_assign_forks_to_philos(t_philo *philo_tab, pthread_mutex_t *fork_mtx,
 		philo_tab[i].right_fork = &fork_mtx[i];
 		i++;
 	}
+}
+
+int	ft_init_meal_mutexes(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->input_args->num_of_philos)
+	{
+		if (ft_single_mutex_init(&data->philo_tab[i].meal_mtx) == -1)
+		{
+			while (--i >= 0)
+				pthread_mutex_destroy(&data->philo_tab[i].meal_mtx);
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
 }
