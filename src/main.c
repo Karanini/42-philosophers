@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:37 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 15:05:59 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:57:59 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char *av[])
 	t_data	*data;
 	int		i;
 
-	if (ac < 4 || ac > 5)
+	if (ac <= 4 || ac >= 7)
 	{
 		printf("incorrect number of arguments\n");
 		return (1);
