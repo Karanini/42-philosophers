@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/29 16:04:42 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:09:22 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,6 @@ void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 				- philo->data->sim_start_time, philo->philo_id);
 	}
 	pthread_mutex_unlock(&philo->data->print_mtx);
-}
-
-void	ft_lock_forks(t_philo *philo, pthread_mutex_t *first_fork,
-		pthread_mutex_t *second_fork)
-{
-	pthread_mutex_lock(first_fork);
-	ft_print_msg(philo, FORK);
-	pthread_mutex_lock(second_fork);
-	ft_print_msg(philo, FORK);
 }
 
 int	ft_eat(t_philo *philo)

@@ -6,7 +6,7 @@
 #    By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/16 14:08:56 by bkaras-g          #+#    #+#              #
-#    Updated: 2025/12/29 16:24:00 by bkaras-g         ###   ########.fr        #
+#    Updated: 2025/12/30 11:07:58 by bkaras-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_FILES = main.c \
 			parsing.c \
 			init2.c \
 			utils.c \
+			utils_time.c \
 			monitor.c \
 			cleanup.c
 

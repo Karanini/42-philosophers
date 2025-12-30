@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:40:32 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/29 16:23:27 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 11:10:59 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ typedef struct s_philo
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	long long			start_time;
-	// (1) beginning of the simulation or (2) when the philosopher
-	// starts to eat
+	int					meals_eaten;
 	t_data				*data;
 }						t_philo;
 
@@ -83,7 +82,7 @@ int						ft_single_mutex_init(pthread_mutex_t *mutex);
 int						ft_init_threads(t_data *data);
 
 /**********PARSING ****************/
-int	ft_parse_input_args(t_args *args, int nb_args);
+int						ft_parse_input_args(t_args *args, int nb_args);
 
 /**********UTILS ****************/
 int						ft_atoi(const char *nptr);
@@ -92,6 +91,12 @@ void					ft_precise_usleep(long usec);
 int						ft_wait_and_check(t_philo *philo, int time_to_wait);
 int						ft_check_death_flag(t_data *data);
 void					ft_print_msg(t_philo *philo, t_print_msg_type msg_type);
+void					ft_lock_forks(t_philo *philo,
+							pthread_mutex_t *first_fork,
+							pthread_mutex_t *second_fork);
+void					ft_unlock_forks(t_philo *philo,
+							pthread_mutex_t *first_fork,
+							pthread_mutex_t *second_fork);
 
 /**********RUN IT ****************/
 void					*ft_wise_life(void *data);
