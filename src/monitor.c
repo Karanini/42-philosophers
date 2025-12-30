@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:24:20 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/30 15:26:52 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ static int	ft_all_philos_ate_well(t_data *data)
 	i = 0;
 	while (i < data->input_args->num_of_philos)
 	{
+		pthread_mutex_lock(&data->philo_tab[i].meal_mtx);
 		if (data->philo_tab[i].meals_eaten < data->input_args->number_of_meals)
-			return (0);
+			return (pthread_mutex_unlock(&data->philo_tab[i].meal_mtx), 0);
+		pthread_mutex_unlock(&data->philo_tab[i].meal_mtx);
 		i++;
 	}
 	ft_raise_death_flag(data);
