@@ -31,6 +31,8 @@ A bit of theory about threads and mutexes (quite important to understand what's 
 
 A [video of Oceano](https://www.youtube.com/watch?v=zOpzGHwJ3MU) where he codes the simulation (do NOT watch if you want to give it a try yourself first)
 
+Your favorite AI LLM, but works even better with a real human!! Trust me, you will remember better what you've learned if you talked to somebody than to some AI
+
 Do not hesitate to contact me if you have any questions on this project :) 
 
 ## 🛠️ Building
