@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 16:56:42 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:20:37 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_data	*ft_init_data(int ac, char *av[])
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
-	//useful to init to NULL to optimize ft_cleanup in case of ?
 	data->input_args = NULL;
 	data->philo_tab = NULL;
 	data->fork_mtx = NULL;

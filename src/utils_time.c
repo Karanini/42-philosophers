@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 11:06:57 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 10:26:22 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:20:07 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 long	ft_get_elapsed_time_microseconds(struct timeval start,
 		struct timeval end)
 {
-	return ((end.tv_sec - start.tv_sec) * 1000000L
-		+ (end.tv_usec - start.tv_usec));
+	return ((end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec
+			- start.tv_usec));
 }
 
 /*
@@ -57,7 +57,6 @@ long long	ft_get_time(void)
 		return (-1);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
-
 
 /**
  * @brief waits 10 ms with `ft_precise_usleep` then checks if `death_flag`

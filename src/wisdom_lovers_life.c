@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/31 11:18:19 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:18:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static int	ft_eat_sleep_think(t_philo *philo)
 	if (ft_check_death_flag(data) == 1)
 		return (-1);
 	ft_print_msg(philo, SLEEP);
-	if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) ==
-		-1)
+	if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000)
+		== -1)
 		return (-1);
 	if (ft_check_death_flag(data) == 1)
 		return (-1);
