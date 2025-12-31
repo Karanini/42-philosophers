@@ -6,13 +6,14 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 16:54:27 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:18:19 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
 static int	ft_think(t_philo *philo);
+static int	ft_eat_sleep_think(t_philo *philo);
 
 void	*ft_wise_life(void *philo_struct)
 {
@@ -30,20 +31,30 @@ void	*ft_wise_life(void *philo_struct)
 		ft_precise_usleep(1000);
 	while (ft_check_death_flag(data) == 0)
 	{
-		if (ft_eat(philo) == -1)
-			break ;
-		if (ft_check_death_flag(data) == 1)
-			break ;
-		ft_print_msg(philo, SLEEP);
-		if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) ==
-			-1)
-			break ;
-		if (ft_check_death_flag(data) == 1)
-			break ;
-		if (ft_think(philo) == -1)
+		if (ft_eat_sleep_think(philo) == -1)
 			break ;
 	}
 	return (NULL);
+}
+
+static int	ft_eat_sleep_think(t_philo *philo)
+{
+	t_data	*data;
+
+	data = philo->data;
+	if (ft_eat(philo) == -1)
+		return (-1);
+	if (ft_check_death_flag(data) == 1)
+		return (-1);
+	ft_print_msg(philo, SLEEP);
+	if (ft_wait_and_check(philo, data->input_args->time_to_sleep * 1000) ==
+		-1)
+		return (-1);
+	if (ft_check_death_flag(data) == 1)
+		return (-1);
+	if (ft_think(philo) == -1)
+		return (-1);
+	return (0);
 }
 
 /*
