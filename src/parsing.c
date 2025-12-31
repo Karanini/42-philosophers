@@ -6,12 +6,17 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 16:17:35 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 10:28:30 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:45:43 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+/*
+* checks if the input args have the correct format. The input args have been
+* precedently converted to `int` by the `ft_atoi` function.
+* If an incorrect number is detected, `ft_atoi` returns a negative number.
+*/
 int	ft_parse_input_args(t_args *args, int nb_args)
 {
 	if (nb_args == 4)

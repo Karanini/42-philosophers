@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:05:16 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 11:21:07 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:38:29 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * - returns -3 if the number has two or more `+` or `-` signs
  *
  * Why `INT_MAX / 1000` ? The arguments are bound to be used with `usleep()`
- * function which accepts numbers to `INT_MAX`. `usleep()` takes an arg
+ * function which accepts numbers up to `INT_MAX`. `usleep()` takes an arg
  * in microseconds and the input args of philo are given in ms
  * so the input args have to be `< INT_MAX / 1000`
  */

@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 11:31:06 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:32:38 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	*ft_monitoring(void *data_struct)
 
 /*
 * checks if a philosopher died of starvation. If it's the case,
-* prints a message announcing the death and raises the death_flag
-* to stop the simulation
+* raises the death_flag to stop the simulation and
+* prints a message announcing the death
 */
 static int	ft_reaper(t_data *data)
 {

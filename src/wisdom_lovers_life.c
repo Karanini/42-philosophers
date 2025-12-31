@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:30:53 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/31 11:18:57 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:45:21 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,13 @@ void	ft_print_msg(t_philo *philo, t_print_msg_type msg_type)
 	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
+/*
+* function to make the philosophers grab forks and eat. To avoid mutex
+* deadlocks, the uneven philos grab first the right fork then the left
+* one, while the even philos grab first the left one then the right one.
+* If all the philos would have grabed the forks in the same order, each
+* would wait eternally for impossible mutex unlocks --> deadlock
+*/
 int	ft_eat(t_philo *philo)
 {
 	if (philo->philo_id % 2 == 1)

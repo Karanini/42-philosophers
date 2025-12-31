@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 11:06:57 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 11:20:07 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:33:57 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long	ft_get_elapsed_time_microseconds(struct timeval start,
 	* usleep() guarantees a minimum time of sleep but generally makes
 	the thread sleep more than asked (approx. 70 ms). To avoid this,
 	this function usleeps in chunks
- * and computes the actual elapsed time. When rem <= 1000,
+ * and computes the actual elapsed time. When rem <= 100,
 	the thread busy-waits: it
  * loops computing elapsed again and again until it's > usec
  *
@@ -59,7 +59,7 @@ long long	ft_get_time(void)
 }
 
 /**
- * @brief waits 10 ms with `ft_precise_usleep` then checks if `death_flag`
+ * @brief waits 5 ms with `ft_precise_usleep` then checks if `death_flag`
  * is set to 1, until `time_to_wait` is reached
  *
  * @param philo Pointer to the philosopher structure.
