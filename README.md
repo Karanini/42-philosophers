@@ -23,6 +23,16 @@ The challenge is to ensure:
 - Handles edge case of a single philosopher
 - Thread-safe message printing
 
+## 📋 Useful Resources
+
+A bit of theory about threads and mutexes (quite important to understand what's at stake):
+- [Nice Notion article](https://medium.com/@jalal92/the-dining-philosophers-7157cc05315) of Youtuber and ex-42 Oceano
+- Chapters 29 and 30 of the excellent book [The Linux Programming Interface](https://maktabkhooneh.org/mag/wp-content/uploads/2022/02/The-Linux-Programming-Interface-Michael-Kerrisk.pdf) (from page 617)
+
+A [video of Oceano](https://www.youtube.com/watch?v=zOpzGHwJ3MU) where he codes the simulation (do NOT watch if you want to give it a try yourself first)
+
+Do not hesitate to contact me if you have any questions on this project :) 
+
 ## 🛠️ Building
 
 The project uses a Makefile for compilation.  Simply run: 
@@ -131,15 +141,6 @@ This will compile the project and create a `philo` executable.
 ## 📜 License
 
 This is a 42 School project. Please refer to 42's policies regarding code sharing and academic integrity. If you are a 42 student, feel free to take a look at the code to inspire yourself, but do not copy-paste! The objective is to learn something ;)
-
-## 📋 Useful Resources
-
-A bit of theory about threads and mutexes (quite important to understand what's at stake):
-- Nice Notion article of Youtuber and ex-42 Oceano https://medium.com/@jalal92/the-dining-philosophers-7157cc05315
-- Chapters 29 and 30 of the excellent book "The Linux Programming Interface" (from page 617) https://maktabkhooneh.org/mag/wp-content/uploads/2022/02/The-Linux-Programming-Interface-Michael-Kerrisk.pdf
-A video of Oceano where he codes the simulation (do NOT watch if you want to give it a try yourself first) https://www.youtube.com/watch?v=zOpzGHwJ3MU
-
-Do not hesitate to contact me if you have any questions on this project :) 
 
 ---
 
