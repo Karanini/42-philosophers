@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 11:06:57 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 11:07:41 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 10:26:22 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_precise_usleep(long usec)
 		gettimeofday(&current, NULL);
 		elapsed = ft_get_elapsed_time_microseconds(start, current);
 		rem = usec - elapsed;
-		if (rem > 1000)
+		if (rem > 100)
 			usleep(rem / 2);
 	}
 }
@@ -78,7 +78,7 @@ int	ft_wait_and_check(t_philo *philo, int time_to_wait)
 	elapsed = 0;
 	while (elapsed < (long)time_to_wait)
 	{
-		ft_precise_usleep(1 * 1000);
+		ft_precise_usleep(5 * 1000);
 		if (ft_check_death_flag(philo->data) == 1)
 			return (-1);
 		gettimeofday(&current, NULL);
