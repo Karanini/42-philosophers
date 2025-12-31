@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:26:52 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 09:21:10 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_monitoring(void *data_struct)
 	pthread_mutex_unlock(&data->starting_mtx);
 	while (1)
 	{
-		ft_precise_usleep(1000);
+		ft_precise_usleep(5000);
 		if (ft_reaper(data))
 			return (NULL);
 		if (data->input_args->number_of_meals > 0

@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 14:02:41 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/30 15:06:09 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 09:32:34 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 static int	ft_init_philo_threads(t_data *data);
 
 /*
-* initializing the philosophers' threads. The `starting_mtx` mutex is
-* locked by the main thread, then by all the other created threads
-* in ft_wise_life() so that each thread waits until all the threads
-* have been created.
-
-* to do if a thread init fails:
-* //death_flag = 1;
-//unlock starting mutex
-* destroy the mutexes and cleanup the memory
+* initializing the philosophers' threads and the monitor thread.
+* The `starting_mtx` mutex is
+* locked by the main thread, then by all the other threads
+* as soon as they are created so that each thread waits until
+* all the threads have been created before starting the simulation.
+*
+* If a thread init fails and one or more other threads have already been
+* created, `death_flag` is set to 1 to make the other threads terminate.
+* In this case, the mutexes destroying and memory cleanup is made
+* by `ft_cleanup` in main.
 */
 int	ft_init_threads(t_data *data)
 {
@@ -44,6 +45,11 @@ int	ft_init_threads(t_data *data)
 	return (0);
 }
 
+/*
+* initialization of the philosophers threads. Two cases:
+* - If only one philosopher, assigning the routine `ft_solitary_life`
+* - If two or more philos, assigning the routine `ft_wise_life`
+*/
 static int	ft_init_philo_threads(t_data *data)
 {
 	int	i;
