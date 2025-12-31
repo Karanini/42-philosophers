@@ -18,7 +18,7 @@ The challenge is to ensure:
 - Thread-based simulation of multiple philosophers
 - Mutex-based synchronization for fork access
 - Death monitoring system
-- Precise timing with microsecond accuracy
+- Precise timing with 5 ms accuracy
 - Support for optional meal count limitation
 - Handles edge case of a single philosopher
 - Thread-safe message printing
@@ -82,7 +82,7 @@ This will compile the project and create a `philo` executable.
 │   ├── wisdom_lovers_life.c # Main philosopher routine
 │   ├── solitary_life.c      # Edge case: single philosopher
 │   ├── monitor.c            # Death and meal completion monitoring
-│   ├── utils.c              # Utility functions (atoi, time, printing)
+│   ├── utils.c              # Utility functions (atoi, death_flag management)
 │   ├── utils_eat.c          # Fork locking and eating utilities
 │   ├── utils_time.c         # Time-related utilities
 │   └── cleanup.c            # Memory and mutex cleanup
@@ -96,28 +96,17 @@ This will compile the project and create a `philo` executable.
 ### Data Structures
 
 - **t_args**: Stores input arguments (times, philosopher count, meal limit)
-- **t_philo**: Contains philosopher-specific data (ID, forks, meal count, thread ID)
-- **t_data**: Global simulation data (all philosophers, mutexes, flags)
+- **t_philo**: Contains philosopher-specific data (ID, forks, meal count, thread ID, meal mutex)
+- **t_data**: Global simulation data (all philosophers, mutexes, death flag)
 
 ### Key Components
 
 1. **Initialization**: Sets up data structures, mutexes, and creates threads
-2. **Philosopher Routine**: Each philosopher thinks, eats, and sleeps in a loop
+2. **Philosopher Routine**: Each philosopher eats, sleeps and thinks in a loop
 3. **Fork Management**: Uses mutexes to prevent multiple philosophers from using the same fork
-4. **Monitoring Thread**: Continuously checks for philosopher deaths or completion
-5. **Synchronization**: Death flag and meal counters protected by mutexes
+4. **Monitoring Thread**: Continuously checks for philosopher deaths or meals completion
+5. **Synchronization**: Death flag, meal counters, lifetime left of each philosopher and print statements protected by mutexes
 6. **Cleanup**: Properly destroys mutexes and frees allocated memory
-
-### Synchronization Strategy
-
-- Each fork is protected by a mutex
-- Philosophers pick up forks in a specific order to prevent deadlocks
-- Death flag is protected to ensure thread-safe termination
-- Print statements are synchronized to prevent message interleaving
-
-## 🧪 Testing
-
-The repository includes a test log file (`199_philos_log.txt`) demonstrating the simulation with 199 philosophers. 
 
 ### Test Cases to Try
 
@@ -135,20 +124,13 @@ The repository includes a test log file (`199_philos_log.txt`) demonstrating the
 ./philo 1 800 200 200
 ```
 
-## ⚠️ Notes
-
-- All time values are in milliseconds
-- The simulation uses precise microsecond sleep for accurate timing
-- The program handles edge cases like a single philosopher (who cannot eat)
-- Proper error handling for thread and mutex operations
-
 ## 👤 Author
 
 **bkaras-g** - [Karanini](https://github.com/Karanini)
 
 ## 📜 License
 
-This is a 42 School project. Please refer to 42's policies regarding code sharing and academic integrity.
+This is a 42 School project. Please refer to 42's policies regarding code sharing and academic integrity. If you are a 42 student, feel free to take a look at the code to inspire yourself, but do not copy-paste! The objective is to learn something ;)
 
 ---
 
