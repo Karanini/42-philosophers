@@ -1,3 +1,6 @@
 *.o
 philo
 test.sh
+helgrind_philo.log
+log_philo
+.debug.txt
