@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 16:55:29 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 11:20:37 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:24:34 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief Initializes the main data structure for the simulation and the mutexes
- * required for synchronization.
+ * required for synchronization. Assigns the forks to the philosophers.
  *
  * @param ac The argument count from the command line.
  * @param av The argument vector containing the simulation parameters as strings.
@@ -52,6 +52,9 @@ t_data	*ft_init_data(int ac, char *av[])
  * structure with the simulation parameters (number of philosophers,
  * time to die, time to eat, time to sleep, and optionally the number
  * of times each philosopher must eat).
+ *
+ * @returns
+ * `NULL` if parsing fails or `args` structure if parsing succeeds
 */
 t_args	*ft_init_args_struct(int ac, char *av[])
 {

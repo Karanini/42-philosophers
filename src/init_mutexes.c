@@ -6,12 +6,16 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 11:21:11 by michel_32         #+#    #+#             */
-/*   Updated: 2025/12/30 15:05:52 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:26:48 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+/*
+* initialization of the mutexes. If a mutex init fails, the precedent mutexes
+* successfully initialized are destroyed before returning `-1`
+*/
 int	ft_init_mutexes(t_data *data)
 {
 	if (ft_single_mutex_init(&data->print_mtx) == -1)

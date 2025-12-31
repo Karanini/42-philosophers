@@ -6,7 +6,7 @@
 /*   By: bkaras-g <bkaras-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 17:16:23 by bkaras-g          #+#    #+#             */
-/*   Updated: 2025/12/31 09:21:10 by bkaras-g         ###   ########.fr       */
+/*   Updated: 2025/12/31 11:31:06 by bkaras-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	*ft_monitoring(void *data_struct)
 }
 
 /*
-* checks if a philosopher died of starvation. I fit's the case,
-* prints a message announcing the death and raised the death_flag
+* checks if a philosopher died of starvation. If it's the case,
+* prints a message announcing the death and raises the death_flag
 * to stop the simulation
 */
 static int	ft_reaper(t_data *data)
@@ -55,8 +55,8 @@ static int	ft_reaper(t_data *data)
 			- data->philo_tab[i].start_time > data->input_args->time_to_die)
 		{
 			pthread_mutex_unlock(&data->philo_tab[i].meal_mtx);
-			ft_print_msg(&data->philo_tab[i], DIE);
 			ft_raise_death_flag(data);
+			ft_print_msg(&data->philo_tab[i], DIE);
 			return (1);
 		}
 		pthread_mutex_unlock(&data->philo_tab[i].meal_mtx);
